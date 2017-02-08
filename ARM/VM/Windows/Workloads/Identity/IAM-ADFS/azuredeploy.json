@@ -2,9 +2,13 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
-      "type": "string"
-    },
+       "location": {
+      "type": "string",
+      "metadata": {
+        "description": "The region to deploy the resources into"
+      },
+      "defaultValue": "[resourceGroup().location]"
+    },   
     "virtualMachineName": {
       "type": "string"
     },
@@ -97,7 +101,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('virtualMachineName')]",
       "apiVersion": "2015-06-15",
-      "location": "usgoviowa",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]",
         "[concat('Microsoft.Compute/availabilitySets/', parameters('availabilitySetName'))]",
@@ -135,7 +139,7 @@
                 "uri": "[concat('https://', parameters('virtualMachineName'),'stdstor.blob.core.usgovcloudapi.net/vhds/', parameters('virtualMachineName'),'-data-01.vhd')]"
               },
               "caching": "None",
-              "diskSizeGB": 100
+              "diskSizeGB": "100"
             }
           ]
         },
@@ -189,11 +193,11 @@
     },
     {
       "name": "[parameters('publicIpAddressName')]",
-      "type": "Microsoft.Network/publicIpAddresses",
+      "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2015-06-15",
       "location": "[parameters('location')]",
       "properties": {
-        "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
+        "publicIPAllocationMethod": "[parameters('publicIpAddressType')]"
       }
     },
 

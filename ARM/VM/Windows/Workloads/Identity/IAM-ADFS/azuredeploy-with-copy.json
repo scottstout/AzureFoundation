@@ -189,8 +189,8 @@
         "copy": {
           "name": "adfsCopy",
           "count": "[parameters('count')]"
-        },
-        
+        }
+      },
       {
         "name": "[parameters('diagnosticsStorageAccountName')]",
         "type": "Microsoft.Storage/storageAccounts",
@@ -208,13 +208,12 @@
         "properties": {
           "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
         }
-      },
+      ,
         "copy": {
           "name": "storagecopy",
           "count": "[parameters('count')]"
         }
-    },
-
+      },
       {
         "apiVersion": "2015-06-15",
         "type": "Microsoft.Compute/virtualMachines/extensions",

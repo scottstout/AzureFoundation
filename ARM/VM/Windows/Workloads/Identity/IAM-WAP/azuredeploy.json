@@ -3,8 +3,12 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "type": "string"
-    },
+      "type": "string",
+      "metadata": {
+        "description": "The region to deploy the resources into"
+      },
+      "defaultValue": "[resourceGroup().location]"
+    },   
     "virtualMachineName": {
       "type": "string"
     },
@@ -97,7 +101,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('virtualMachineName')]",
       "apiVersion": "2015-06-15",
-      "location": "usgoviowa",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]",
         "[concat('Microsoft.Compute/availabilitySets/', parameters('availabilitySetName'))]",
