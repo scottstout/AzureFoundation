@@ -97,7 +97,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('virtualMachineName')]",
       "apiVersion": "2015-06-15",
-      "location": "usgoviowa",
+      "location": "westcentralus",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]",
         "[concat('Microsoft.Compute/availabilitySets/', parameters('availabilitySetName'))]",
@@ -122,7 +122,7 @@
             "name": "[parameters('virtualMachineName')]",
             "createOption": "FromImage",
             "vhd": {
-              "uri": "[concat('https://', parameters('virtualMachineName'),'stdstor.blob.core.usgovcloudapi.net/vhds/', parameters('virtualMachineName'),'20170124140749.vhd')]"
+              "uri": "[concat('https://', parameters('virtualMachineName'),'stdstor.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'20170124140749.vhd')]"
             },
             "caching": "ReadWrite"
           },
@@ -132,7 +132,7 @@
               "name": "[concat(parameters('virtualMachineName'),'-data-01')]",
               "createOption": "Empty",
               "vhd": {
-                "uri": "[concat('https://', parameters('virtualMachineName'),'stdstor.blob.core.usgovcloudapi.net/vhds/', parameters('virtualMachineName'),'-data-01.vhd')]"
+                "uri": "[concat('https://', parameters('virtualMachineName'),'stdstor.blob.core.windows.net/vhds/', parameters('virtualMachineName'),'-data-01.vhd')]"
               },
               "caching": "None",
               "diskSizeGB": 100
